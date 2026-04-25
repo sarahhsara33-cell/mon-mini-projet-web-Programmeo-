@@ -1,0 +1,152 @@
+/* --- CONFIGURATION GÉNÉRALE --- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Crucial pour la gestion des tailles */
+}
+
+html {
+    scroll-behavior: smooth; /* Pour des transitions douces lors des clics sur le menu */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0f172a;
+    color: #f1f5f9;
+    line-height: 1.6;
+    overflow-x: hidden; /* Évite les scrolls horizontaux accidentels */
+}
+
+/* --- BARRE DE NAVIGATION --- */
+header {
+    background-color: rgba(30, 41, 59, 0.8); /* Ajout de transparence */
+    backdrop-filter: blur(10px); /* Effet de flou moderne */
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #334155;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none; /* Si ton logo est un lien */
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px; /* Utilisation de gap plutôt que margin-left sur les li */
+}
+
+nav ul li a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #38bdf8;
+}
+
+/* --- SECTION HERO --- */
+main {
+    padding: 80px 10%; /* Augmentation du padding pour respirer */
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Taille adaptative selon l'écran */
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- BOUTON --- */
+input[type="submit"], .btn {
+    background: linear-gradient(135deg, #38bdf8 0%, #1d4ed8 100%);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+input[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+    filter: brightness(1.1);
+}
+
+/* --- SECTION FEATURES --- */
+.features {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.features h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    color: #f1f5f9;
+}
+
+.feature-item {
+    background-color: #1e293b;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid #334155;
+    transition: all 0.3s ease;
+    text-align: left; /* Souvent plus lisible pour les blocs de texte */
+}
+
+.feature-item:hover {
+    border-color: #38bdf8;
+    background-color: #1e293bce;
+    transform: scale(1.02);
+}
+
+.feature-item h3 {
+    color: #38bdf8;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    margin-top: 80px;
+    background-color: #020617;
+    color: #64748b;
+    border-top: 1px solid #1e293b;
+}
