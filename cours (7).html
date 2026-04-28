@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Cours Python - Programmeo</title>
+    <link rel="stylesheet" href="cours.css">
+</head>
+<body>
+
+<header>
+    <h1>🐍 Académie Programmeo</h1>
+    <nav>
+        <a href="index.html">Accueil</a> | 
+        <a href="cours.html">Cours</a> |
+        <a href="quiz.html">Quiz</a>
+    </nav>
+</header>
+
+<main class="main-layout">
+    <div class="sidebar">
+        <h3>Sommaire</h3>
+        <ul class="guide-menu">
+            <li class="btn-guide" data-index="1">Guide 01 : Variables & Syntaxe</li>
+            <li class="btn-guide" data-index="2">Guide 02 : Types de Données</li>
+            <li class="btn-guide" data-index="3">Guide 03 : Opérateurs</li>
+            <li class="btn-guide" data-index="4">Guide 04 : Les Listes</li>
+            <li class="btn-guide" data-index="5">Guide 05 : Les Boucles</li>
+            <li class="btn-guide" data-index="6">Guide 06 : Les Fonctions</li>
+            <li class="btn-guide" data-index="7">Guide 07 : Gestion d'erreurs</li>
+            <li class="btn-guide" data-index="8">Guide 08 : Fichiers (I/O)</li>
+            <li class="btn-guide" data-index="9">Guide 09 : La Récursivité</li>
+            <li class="btn-guide" data-index="10">Guide 10 : Modules & Import</li>
+        </ul>
+    </div>
+
+    <section class="content-display" id="zone-affichage">
+        <div id="message-accueil">
+            <h2>Choisissez un module</h2>
+            <p>Cliquez sur un guide à gauche pour afficher les détails et les exemples du cours.</p>
+        </div>
+    </section>
+</main>
+
+<script>
+const baseDonneesGuides = {
+    1: {
+        titre: "Les Variables & Syntaxe",
+        description: "Une variable est une zone mémoire. Python utilise l'indentation pour structurer le code.",
+        exemples: ["x = 5", "nom = 'FSSM'", "print(x)", "# Commentaire", "a, b = 1, 2"]
+    },
+    2: {
+        titre: "Types de Données",
+        description: "Types principaux : int, float, str, bool.",
+        exemples: ["type(10)", "float(3)", "str(2024)", "bool(True)", "complex(1, 2)"]
+    },
+    3: {
+        titre: "Les Opérateurs",
+        description: "Opérations mathématiques et logiques.",
+        exemples: ["10 / 3", "10 // 3", "10 % 3", "2 ** 3", "x == y"]
+    },
+    4: {
+        titre: "Les Listes",
+        description: "Structure de données modifiable.",
+        exemples: ["L = [1,2,3]", "L.append(4)", "L[0]", "L[1:3]", "len(L)"]
+    },
+    5: {
+        titre: "Les Boucles",
+        description: "Boucles for et while.",
+        exemples: ["for i in range(5):", "while x < 10:", "break", "continue", "for item in liste:"]
+    },
+    6: {
+        titre: "Les Fonctions",
+        description: "Fonctions réutilisables.",
+        exemples: ["def f():", "return x", "f(5)", "def f(a,b=10):", "lambda x:x+1"]
+    },
+    7: {
+        titre: "Gestion d'erreurs",
+        description: "Utilisation de try/except.",
+        exemples: ["try:", "except:", "finally:", "raise", "except Exception as e:"]
+    },
+    8: {
+        titre: "Fichiers",
+        description: "Lecture/écriture de fichiers.",
+        exemples: ["open('file.txt')", "read()", "write()", "close()", "with open()"]
+    },
+    9: {
+        titre: "Récursivité",
+        description: "Fonction qui s'appelle elle-même.",
+        exemples: ["if n==0", "return n*fact(n-1)", "cas de base", "appel", "fonction"]
+    },
+    10: {
+        titre: "Modules",
+        description: "Importer des bibliothèques.",
+        exemples: ["import math", "from math import sqrt", "math.pi", "random()", "randint()"]
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const boutons = document.querySelectorAll('.btn-guide');
+
+    boutons.forEach(bouton => {
+        bouton.addEventListener('click', () => {
+            const index = bouton.dataset.index;
+            afficherContenu(index);
+        });
+    });
+});
+
+function afficherContenu(numero) {
+    const zone = document.getElementById('zone-affichage');
+    const data = baseDonneesGuides[numero];
+
+    if(data) {
+        let htmlExemples = "";
+        data.exemples.forEach((ex, index) => {
+            htmlExemples += `
+                <div class="exemple-card">
+                    <strong>Exemple ${index + 1}</strong>
+                    <code>${ex}</code>
+                </div>
+            `;
+        });
+
+        zone.innerHTML = `
+            <div class="animated-content">
+                <h2>${data.titre}</h2>
+                <p>${data.description}</p>
+
+                <div class="grid-exemples">
+                    ${htmlExemples}
+                </div>
+
+                <div style="margin-top:30px;text-align:center;">
+                    <a href="quiz.html" class="btn-test">Passer au test du module</a>
+                </div>
+            </div>
+        `;
+    }
+}
+</script>
+
+</body>
+</html>
