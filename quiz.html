@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Final - Programmeo</title>
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --bg: #0d1117;
+            --card: #161b22;
+            --text: #f0f6fc;
+            --success: #7ee787;
+            --error: #ff7b72;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #010409;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: var(--card);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .progress-container { margin-bottom: 25px; }
+
+        .progress-bar {
+            height: 8px;
+            background: #30363d;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        #progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .options-list { list-style: none; padding: 0; }
+
+        .option {
+            background: #21262d;
+            border: 1px solid #30363d;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option:hover {
+            background: #30363d;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: rgba(0, 210, 255, 0.1);
+        }
+
+        .footer {
+            margin-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        #btn-next {
+            padding: 12px 30px;
+            background: var(--primary);
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        #result-area { display: none; text-align: center; }
+
+        .final-score {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--primary);
+        }
+
+        .restart-btn {
+            background: #30363d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .next-page-btn {
+            background: var(--success);
+            color: #0d1117;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🎓 Examen Certifiant Programmeo</h1>
+    <p>Niveau : Avancé (Python & Algorithmique)</p>
+</header>
+
+<main class="quiz-container">
+    <div id="quiz-step">
+        <div class="progress-container">
+            <span id="progress-text">Question 1 / 20</span>
+            <div class="progress-bar"><div id="progress-fill"></div></div>
+        </div>
+
+        <div id="question-area"></div>
+
+        <div class="footer">
+            <button id="btn-next" disabled>Valider la réponse</button>
+        </div>
+    </div>
+
+    <div id="result-area">
+        <h2>Examen Terminé</h2>
+        <div class="final-score" id="score-display">0 / 20</div>
+        <p id="feedback-msg"></p>
+        
+        <button class="restart-btn" onclick="location.reload()">Recommencer le test</button>
+        <button class="next-page-btn" onclick="window.location.href='contact.html'">
+            Me contacter / Ressources
+        </button>
+    </div>
+</main>
+
+<script>
+    const questions = [
+        { q: "En Python, que retourne l'expression : 3 * '2' + '3' ?", opt: ["'2223'", "'63'", "9", "'2222'"], c: 0 },
+        { q: "Quelle méthode permet d'ajouter tous les éléments d'une liste dans une autre ?", opt: ["append()", "add()", "extend()", "insert()"], c: 2 },
+        { q: "Quelle est la valeur de bool([]) ?", opt: ["True", "False", "None", "Erreur"], c: 1 },
+        { q: "Quel est le résultat de 10 // 3 ?", opt: ["3.33", "3", "1", "0"], c: 1 },
+        { q: "Comment s'appelle l'erreur générée par une récursivité infinie ?", opt: ["InfinityError", "StackOverflow", "RecursionError", "LoopError"], c: 2 },
+        { q: "Lequel de ces types est immuable (non modifiable) ?", opt: ["Liste", "Dictionnaire", "Tuple", "Set"], c: 2 },
+        { q: "Que fait 'L[::-1]' sur une liste L ?", opt: ["Rien", "Supprime le dernier élément", "Inverse la liste", "Extrait le premier"], c: 2 },
+        { q: "Comment appelle-t-on une fonction définie sans nom ?", opt: ["Fonction anonyme (lambda)", "Fonction vide", "Macro", "Ghost function"], c: 0 },
+        { q: "Quelle méthode transforme une chaîne en liste de mots ?", opt: ["join()", "slice()", "split()", "divide()"], c: 2 },
+        { q: "Que retourne '2' == 2 en Python ?", opt: ["True", "False", "None", "Erreur"], c: 1 },
+        { q: "Que retourne l'instruction 'type(3.14)' ?", opt: ["int", "number", "float", "str"], c: 2 },
+        { q: "Comment définit-on un nombre complexe en Python (ex: 1 + 2i) ?", opt: ["1 + 2i", "1 + 2j", "complex(1, 2i)", "1 + 2complex"], c: 1 },
+        { q: "Comment accède-t-on à la valeur 'Ali' dans d = {'nom': 'Ali', 'age': 20} ?", opt: ["d[0]", "d.get(0)", "d['nom']", "d.nom"], c: 2 },
+        { q: "En Python, l'indentation est utilisée pour :", opt: ["Le style", "Définir les blocs de code", "C'est optionnel", "Remplacer les points-virgules"], c: 1 },
+        { q: "Que produit l'instruction 'range(2, 10, 2)' ?", opt: ["[2, 3...9]", "[2, 4, 6, 8]", "[2, 4, 6, 8, 10]", "[0, 2, 4, 6, 8]"], c: 1 },
+        { q: "Quelle instruction permet de passer immédiatement à l'itération suivante ?", opt: ["break", "stop", "continue", "next"], c: 2 },
+        { q: "Si une fonction ne contient pas 'return', que renvoie-t-elle ?", opt: ["0", "False", "None", "Erreur"], c: 2 },
+        { q: "Comment importe-t-on uniquement 'sqrt' du module 'math' ?", opt: ["import math.sqrt", "from math import sqrt", "include math(sqrt)", "import sqrt from math"], c: 1 },
+        { q: "Dans une fonction récursive, qu'est-ce que le 'cas de base' ?", opt: ["L'appel récursif", "La condition d'arrêt", "Le premier calcul", "La boucle while"], c: 1 },
+        { q: "Que fait l'opérateur 'is' par rapport à '==' ?", opt: ["Identiques", "is = identité (ID), == = valeur", "is est plus rapide", "is est pour les chiffres"], c: 1 }
+    ];
+
+    let currentIdx = 0;
+    let score = 0;
+    let selectedIdx = null;
+
+    const questionArea = document.getElementById('question-area');
+    const btnNext = document.getElementById('btn-next');
+    const progressFill = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
+    const resultArea = document.getElementById('result-area');
+    const quizStep = document.getElementById('quiz-step');
+
+    function loadQuestion() {
+        selectedIdx = null;
+        btnNext.disabled = true;
+        const qData = questions[currentIdx];
+
+        progressText.innerText = `Question ${currentIdx + 1} / ${questions.length}`;
+        progressFill.style.width = `${((currentIdx + 1) / questions.length) * 100}%`;
+
+        questionArea.innerHTML = `
+            <div class="question-text">${qData.q}</div>
+            <ul class="options-list">
+                ${qData.opt.map((o, i) => `<li class="option" data-idx="${i}">${o}</li>`).join('')}
+            </ul>
+        `;
+
+        document.querySelectorAll('.option').forEach(el => {
+            el.addEventListener('click', function() {
+                document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedIdx = parseInt(this.dataset.idx);
+                btnNext.disabled = false;
+            });
+        });
+    }
+
+    btnNext.addEventListener('click', () => {
+        if (selectedIdx === questions[currentIdx].c) {
+            score++;
+        }
+
+        currentIdx++;
+
+        if (currentIdx < questions.length) {
+            loadQuestion();
+        } else {
+            showFinalResults();
+        }
+    });
+
+    function showFinalResults() {
+        quizStep.style.display = 'none';
+        resultArea.style.display = 'block';
+        document.getElementById('score-display').innerText = `${score} / ${questions.length}`;
+
+        let message = "";
+        if (score >= 16) message = "Excellent ! Vous maîtrisez parfaitement le programme.";
+        else if (score >= 10) message = "Bien joué ! Vous avez validé l'examen.";
+        else message = "Travaillez encore un peu les concepts de base et réessayez !";
+        
+        document.getElementById('feedback-msg').innerText = message;
+
+        
+        if (score >= 10) {
+            setTimeout(() => {
+                console.log("Redirection vers la page de contact...");
+            }, 8000); 
+        }
+    }
+
+    
+    loadQuestion();
+</script>
+
+</body>
+</html>
