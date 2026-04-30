@@ -45,7 +45,7 @@ nav a:hover {
     margin: 60px auto;
     padding: 50px;
     background: rgba(15, 23, 42, 0.7);
-    backdrop-filter: blur(10px);/*Floute l'arrière-plan situé derrière l'élément pour créer un effet de 'verre dépoli' (Glassmorphism)*/
+    backdrop-filter: blur(10px);//Floute l'arrière-plan situé derrière l'élément pour créer un effet de 'verre dépoli' (Glassmorphism)
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
