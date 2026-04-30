@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Programmeeo - Contact</title>
+    <style>
+        body {
+            background-color: #0f172a; 
+            color: #f1f5f9;
+            font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        
+        #formulaire-contact {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 40px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+       
+        .statue-img {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            color: #f8fafc;
+        }
+
+        .intro-text {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+   
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        input[type="text"], 
+        input[type="email"], 
+        textarea {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            color: #f1f5f9;
+            padding: 14px;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+       
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+            background-color: #161e31;
+        }
+
+        .form-group:focus-within label {
+            color: #38bdf8;
+        }
+
+       
+        #submitBtn {
+            background: linear-gradient(135deg, #38bdf8 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        #submitBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+        }
+
+        #submitBtn:active {
+            transform: translateY(0);
+        }
+
+       
+        #confirmation {
+            display: none; 
+            color: #10b981;
+            font-weight: 500;
+            background-color: rgba(16, 185, 129, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #10b981;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🐍 Programmeeo</h1>
+        <nav>
+            <a href="index.html">Accueil</a> |
+            <a href="cours.html">Cours</a> |
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="formulaire-contact">
+            <img src="celeste.png" alt="Céleste" class="statue-img" onerror="this.style.backgroundColor='#38bdf8';">
+            
+            <h2>Contactez la Statue Céleste</h2>
+            <p class="intro-text">Une question sur Python ? Laissez un message aux astres.</p>
+
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" required placeholder="Comment vous appelez-vous ?">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="votre@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" required placeholder="Votre message pour Céleste..."></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn">Envoyer vers les étoiles</button>
+            </form>
+
+            <div id="confirmation"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Programmeeo - Spécialisation Python</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const confirmationDiv = document.getElementById('confirmation');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const nomValue = document.getElementById('nom').value;
+
+                    
+                    contactForm.style.display = 'none';
+
+                    
+                    confirmationDiv.style.display = 'block';
+                    confirmationDiv.innerHTML = `
+                        <div style="font-size: 2rem; margin-bottom: 10px;">✨</div>
+                        <strong>Succès !</strong><br>
+                        Merci ${nomValue}, votre message a bien été transmis à Céleste.<br>
+                        <small style="opacity: 0.8;">Elle vous répondra dès que les étoiles seront alignées.</small>
+                    `;
+
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
