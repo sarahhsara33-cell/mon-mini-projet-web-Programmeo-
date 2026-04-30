@@ -98,7 +98,7 @@ header nav a:hover {
     animation: fadeIn 0.5s ease-out;
 }
 
-@keyframes fadeIn {
+@keyframes/Définit les étapes d'une animation personnalisée en spécifiant l'état des propriétés CSS à différents moments/ fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
@@ -115,7 +115,6 @@ header nav a:hover {
     color: #b1b8c0;
 }
 
-/* ✅ MODIFICATION ICI (Flexbox au lieu de Grid) */
 .grid-exemples {
     display: flex;
     flex-wrap: wrap;
@@ -132,7 +131,6 @@ header nav a:hover {
     flex: 1 1 250px; /* largeur uniforme */
 }
 
-/* option: même hauteur */
 .grid-exemples {
     align-items: stretch;
 }
@@ -156,7 +154,6 @@ code {
     overflow-x: auto;
 }
 
-/* --- Bouton Test --- */
 .btn-test {
     display: inline-block;
     background-color: #2ecc71;
