@@ -2,142 +2,132 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Examen Final - Programmeo</title>
     <style>
-        :root {
-            --primary: #00d2ff;
-            --secondary: #3a7bd5;
-            --bg: #0d1117;
-            --card: #161b22;
-            --text: #f0f6fc;
-            --success: #7ee787;
-            --error: #ff7b72;
-        }
+    body {
+    background-color: #0d1117;
+    color: #f0f6fc;            
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+header {
+    background: #010409;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #30363d;
+}
 
-        header {
-            background: #010409;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid #30363d;
-        }
+.quiz-container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #161b22;       
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
 
-        .quiz-container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: var(--card);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #30363d;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+.progress-container { margin-bottom: 25px; }
 
-        .progress-container { margin-bottom: 25px; }
+.progress-bar {
+    height: 8px;
+    background: #30363d;
+    border-radius: 4px;
+    overflow: hidden;
+}
 
-        .progress-bar {
-            height: 8px;
-            background: #30363d;
-            border-radius: 4px;
-            overflow: hidden;
-        }
+#progress-fill {
+    height: 100%;
+    
+    background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+    width: 0%;
+    transition: width 0.4s ease;
+}
 
-        #progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            width: 0%;
-            transition: width 0.4s ease;
-        }
+.question-text {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: #00d2ff;             
+}
 
-        .question-text {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
+.options-list { list-style: none; padding: 0; }
 
-        .options-list { list-style: none; padding: 0; }
+.option {
+    background: #21262d;
+    border: 1px solid #30363d;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
 
-        .option {
-            background: #21262d;
-            border: 1px solid #30363d;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+.option:hover {
+    background: #30363d;
+    transform: translateX(5px);
+}
 
-        .option:hover {
-            background: #30363d;
-            transform: translateX(5px);
-        }
+.option.selected {
+    border-color: #00d2ff;      
+    background: rgba(0, 210, 255, 0.1);
+}
 
-        .option.selected {
-            border-color: var(--primary);
-            background: rgba(0, 210, 255, 0.1);
-        }
+.footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
 
-        .footer {
-            margin-top: 30px;
-            display: flex;
-            justify-content: flex-end;
-        }
+#btn-next {
+    padding: 12px 30px;
+    background: #00d2ff;        
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        #btn-next {
-            padding: 12px 30px;
-            background: var(--primary);
-            color: #000;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+#btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
 
-        #btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
+#result-area { display: none; text-align: center; }
 
-        #result-area { display: none; text-align: center; }
+.final-score {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #00d2ff;             
+}
 
-        .final-score {
-            font-size: 4rem;
-            font-weight: bold;
-            margin: 20px 0;
-            color: var(--primary);
-        }
+.restart-btn {
+    background: #30363d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
 
-        .restart-btn {
-            background: #30363d;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-        }
-
-        .next-page-btn {
-            background: var(--success);
-            color: #0d1117;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin: 5px;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-    </style>
+.next-page-btn {
+    background: #7ee787;        
+    color: #0d1117;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+</style>
 </head>
 <body>
 
