@@ -14,7 +14,7 @@ body {
     background-color: #0f172a;
     color: #f1f5f9;
     line-height: 1.6;
-    overflow-x: hidden; /* Évite les scrolls horizontaux accidentels */
+    overflow-x: hidden; // Évite les scrolls horizontaux accidentels 
 }
 
 header {
@@ -42,7 +42,7 @@ header {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 20px; /* Utilisation de gap plutôt que margin-left sur les li */
+    gap: 20px; // Utilisation de gap plutôt que margin-left sur les li 
 }
 
 nav ul li a {
