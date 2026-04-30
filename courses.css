@@ -98,7 +98,8 @@ header nav a:hover {
     animation: fadeIn 0.5s ease-out;
 }
 
-@keyframes/Définit les étapes d'une animation personnalisée en spécifiant l'état des propriétés CSS à différents moments/ fadeIn {
+/* Définit les étapes d'une animation personnalisée */
+@keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
@@ -119,6 +120,7 @@ header nav a:hover {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    align-items: stretch;
 }
 
 .exemple-card {
@@ -127,12 +129,7 @@ header nav a:hover {
     border-radius: 12px;
     border-left: 4px solid #00d2ff;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-
-    flex: 1 1 250px; /* largeur uniforme */
-}
-
-.grid-exemples {
-    align-items: stretch;
+    flex: 1 1 250px;
 }
 
 .exemple-card strong {
