@@ -20,7 +20,8 @@
     <div class="sidebar">
         <h3>Sommaire</h3>
         <ul class="guide-menu">
-            <li class="btn-guide" data-index="1">Guide 01 : Variables & Syntaxe</li><!-- data-index est un attribut personnalisé sert à identifier chaque guide pour que JavaScript sache quel contenu afficher-->
+            <!-- data-index sert à identifier chaque guide pour le JavaScript -->
+            <li class="btn-guide" data-index="1">Guide 01 : Variables & Syntaxe</li>
             <li class="btn-guide" data-index="2">Guide 02 : Types de Données</li>
             <li class="btn-guide" data-index="3">Guide 03 : Opérateurs</li>
             <li class="btn-guide" data-index="4">Guide 04 : Les Listes</li>
@@ -95,10 +96,12 @@ const baseDonneesGuides = {
     }
 };
 
-document.addEventListener('DOMContentLoaded'//il assure que script ne s'exécute qu'une fois que toute la structure HTML de la page est chargée, évitant ainsi des erreurs d'éléments introuvables., () => {
-    const boutons = document.querySelectorAll('.btn-guide');// querySelectorAll : Sélectionne l'ensemble des éléments HTML correspondant au sélecteur spécifié 
+// Assure que le script s'exécute après le chargement du HTML
+document.addEventListener('DOMContentLoaded', () => {
+    // Sélectionne tous les boutons du menu
+    const boutons = document.querySelectorAll('.btn-guide');
 
-    boutons.forEach(bouton => {//évitant de répéter le code manuellement pour chaque bouton.
+    boutons.forEach(bouton => {
         bouton.addEventListener('click', () => {
             const index = bouton.dataset.index;
             afficherContenu(index);
@@ -121,7 +124,8 @@ function afficherContenu(numero) {
             `;
         });
 
-        zone.innerHTML//permet de modifier dynamiquement le contenu HTML d'une zone sans recharger la page = `
+        // Mise à jour dynamique du contenu sans recharger la page
+        zone.innerHTML = `
             <div class="animated-content">
                 <h2>${data.titre}</h2>
                 <p>${data.description}</p>
