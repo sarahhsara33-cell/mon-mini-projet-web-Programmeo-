@@ -1,12 +1,12 @@
-/* --- CONFIGURATION GÉNÉRALE --- */
+
 *, *::before, *::after {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Crucial pour la gestion des tailles */
+    box-sizing: border-box; 
 }
 
 html {
-    scroll-behavior: smooth; /* Pour des transitions douces lors des clics sur le menu */
+    scroll-behavior: smooth; 
 }
 
 body {
@@ -17,10 +17,9 @@ body {
     overflow-x: hidden; /* Évite les scrolls horizontaux accidentels */
 }
 
-/* --- BARRE DE NAVIGATION --- */
 header {
-    background-color: rgba(30, 41, 59, 0.8); /* Ajout de transparence */
-    backdrop-filter: blur(10px); /* Effet de flou moderne */
+    background-color: rgba(30, 41, 59, 0.8); 
+    backdrop-filter: blur(10px); 
     padding: 1rem 5%;
     display: flex;
     justify-content: space-between;
@@ -37,7 +36,7 @@ header {
     color: #38bdf8;
     text-transform: uppercase;
     letter-spacing: 1px;
-    text-decoration: none; /* Si ton logo est un lien */
+    text-decoration: none; 
 }
 
 nav ul {
@@ -57,16 +56,15 @@ nav ul li a:hover {
     color: #38bdf8;
 }
 
-/* --- SECTION HERO --- */
 main {
-    padding: 80px 10%; /* Augmentation du padding pour respirer */
+    padding: 80px 10%; 
     text-align: center;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem); /* Taille adaptative selon l'écran */
+    font-size: clamp(2rem, 5vw, 3.5rem); 
     margin-bottom: 20px;
     background: linear-gradient(to right, #38bdf8, #818cf8);
     -webkit-background-clip: text;
@@ -84,7 +82,6 @@ p {
     margin-right: auto;
 }
 
-/* --- BOUTON --- */
 input[type="submit"], .btn {
     background: linear-gradient(135deg, #38bdf8 0%, #1d4ed8 100%);
     color: white;
@@ -105,7 +102,6 @@ input[type="submit"]:hover {
     filter: brightness(1.1);
 }
 
-/* --- SECTION FEATURES --- */
 .features {
     margin-top: 80px;
     display: grid;
@@ -126,7 +122,7 @@ input[type="submit"]:hover {
     border-radius: 20px;
     border: 1px solid #334155;
     transition: all 0.3s ease;
-    text-align: left; /* Souvent plus lisible pour les blocs de texte */
+    text-align: left;
 }
 
 .feature-item:hover {
@@ -141,7 +137,6 @@ input[type="submit"]:hover {
     font-size: 1.4rem;
 }
 
-/* --- FOOTER --- */
 footer {
     text-align: center;
     padding: 60px 20px;
