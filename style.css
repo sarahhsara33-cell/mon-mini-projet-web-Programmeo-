@@ -34,9 +34,9 @@ header {
     font-size: 1.5rem;
     font-weight: bold;
     color: #38bdf8;
-    text-transform: uppercase;
+    text-transform: uppercase;//transforme l'integralite d'un bloc de texte en lettres majuscules
     letter-spacing: 1px;
-    text-decoration: none; 
+    text-decoration: none;//gére la decoration du texte,principalement le soulignement
 }
 
 nav ul {
