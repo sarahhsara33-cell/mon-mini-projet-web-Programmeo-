@@ -14,19 +14,21 @@ body {
     background-color: #0f172a;
     color: #f1f5f9;
     line-height: 1.6;
-    overflow-x: hidden; // Évite les scrolls horizontaux accidentels 
+    overflow-x: hidden; 
 }
 
 header {
     background-color: rgba(30, 41, 59, 0.8); 
-    backdrop-filter: blur(10px); 
+    backdrop-filter: blur(10px); /*deja explique dans style1.css*/
     padding: 1rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #334155;
-    position: sticky;
+    position: fixed;
+    left:0;
     top: 0;
+    right:0:
     z-index: 1000;
 }
 
@@ -34,15 +36,15 @@ header {
     font-size: 1.5rem;
     font-weight: bold;
     color: #38bdf8;
-    text-transform: uppercase;//transforme l'integralite d'un bloc de texte en lettres majuscules
+    text-transform: uppercase;/*transforme l'integralite d'un bloc de texte en lettres majuscules*/
     letter-spacing: 1px;
-    text-decoration: none;//gére la decoration du texte,principalement le soulignement
+    text-decoration: none;
 }
 
 nav ul {
     display: flex;
     list-style: none;
-    gap: 20px; // Utilisation de gap plutôt que margin-left sur les li 
+    gap: 20px; 
 }
 
 nav ul li a {
@@ -67,9 +69,10 @@ h1 {
     font-size: clamp(2rem, 5vw, 3.5rem); 
     margin-bottom: 20px;
     background: linear-gradient(to right, #38bdf8, #818cf8);
+    /*l'arriere plan de doit s'afficher que là où il y a du texte*/
     -webkit-background-clip: text;
     background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: transparent;
     line-height: 1.2;
 }
 
@@ -99,6 +102,7 @@ input[type="submit"], .btn {
 input[type="submit"]:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+    /* Augmente légèrement la luminosité des couleurs du bouton (110%) */
     filter: brightness(1.1);
 }
 
